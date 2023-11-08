@@ -14,6 +14,8 @@ namespace Parallel_ForEach
             List<int> list = new List<int>();
 
             pr.FillArray(list);
+
+            Parallel.ForEach<int>(list, pr.Print);
         }
         void FillArray(List<int> arr)
         {
@@ -23,6 +25,15 @@ namespace Parallel_ForEach
             {
                 arr.Add(rnd.Next(1, 20));
             }
+        }
+        decimal Factorial(int n)
+        {
+            if (n == 0) return 1;
+            return n * Factorial(n - 1);
+        }
+        void Print(int n)
+        {
+            Console.WriteLine("Задача №{0}: Факториал {1}! = {2}", Task.CurrentId, n, Factorial(n).ToString("#,#"));
         }
     }
 }
